@@ -1,0 +1,1 @@
+window.__GEOPATUH_DISPLAY_CHUNKS__=window.__GEOPATUH_DISPLAY_CHUNKS__||{};window.__GEOPATUH_DISPLAY_CHUNKS__["rtrw_lotim|2329:-170"]={"type":"FeatureCollection","features":[{"type":"Feature","properties":{"PENGGUNAAN":"Hutan Konservasi"},"geometry":{"type":"MultiPolygon","coordinates":[[[[116.45,-8.5],[116.5,-8.5],[116.5,-8.45],[116.45,-8.45],[116.45,-8.5]]]]},"id":1248}]};

@@ -1,0 +1,1 @@
+window.__GEOPATUH_DISPLAY_CHUNKS__=window.__GEOPATUH_DISPLAY_CHUNKS__||{};window.__GEOPATUH_DISPLAY_CHUNKS__["rtrw_ntb|2334:-171"]={"type":"FeatureCollection","features":[{"type":"Feature","properties":{"NAMOBJ":"Kawasan Permukiman"},"geometry":{"type":"MultiPolygon","coordinates":[[[[116.7,-8.55],[116.75,-8.55],[116.7,-8.5],[116.7,-8.55]]]]},"id":16}]};
