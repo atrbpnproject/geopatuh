@@ -7411,6 +7411,17 @@ L.Control.Measure = L.Control.extend({
     }
 
     resultFeature.addTo(this._layer);
+    if (latlngs.length === 2) {
+      resultFeature.bindTooltip(
+        '<strong>Jarak: ' + this._getMeasurementDisplayStrings(calced).lengthDisplay + '</strong>',
+        {
+          permanent: true,
+          direction: 'center',
+          className: 'measure-distance-label',
+          opacity: 0.96
+        }
+      ).openTooltip();
+    }
     resultFeature.bindPopup(popupContainer, this.options.popupOptions);
     if (resultFeature.getBounds) {
       resultFeature.openPopup(resultFeature.getBounds().getCenter());
