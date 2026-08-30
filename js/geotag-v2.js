@@ -6,6 +6,23 @@
   function localAdmin(lon,lat){var data=window.json_BatasAdministrasiKelurahandanDesaLombokTimur_3,fs=data&&data.features||[];for(var i=0;i<fs.length;i++){var f=fs[i],g=f.geometry;if(!g)continue;var polys=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(var p=0;p<polys.length;p++)if(inRing([lon,lat],polys[p][0])){var a=f.properties||{};return{village:a.WADMKD||'-',district:a.WADMKC||'-',regency:a.WADMKK||'Lombok Timur',province:a.WADMPR||'Nusa Tenggara Barat',address:'',source:'Batas Administrasi Lombok Timur'}}}return null}
   function internetAdmin(lon,lat){var url='https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat='+encodeURIComponent(lat)+'&lon='+encodeURIComponent(lon)+'&zoom=18&namedetails=1';return fetch(url,{headers:{'Accept-Language':'id'}}).then(function(r){if(!r.ok)throw Error();return r.json()}).then(function(d){var a=d.address||{};return{village:a.village||a.hamlet||a.neighbourhood||a.suburb||a.quarter||a.residential||a.locality||'-',district:a.city_district||a.district||a.subdistrict||a.town||a.municipality||'-',regency:a.county||a.city||a.municipality||'-',province:a.state||'-',address:d.display_name||'-',source:'OpenStreetMap/Nominatim'}}).catch(function(){return{village:'-',district:'-',regency:'-',province:'-',address:'Alamat internet tidak tersedia',source:'Koordinat GPS'}})}
   function adminAt(lon,lat){var local=localAdmin(lon,lat);if(local&&local.village!=='-'&&local.district!=='-')return Promise.resolve(local);return internetAdmin(lon,lat).then(function(remote){if(!local)return remote;local.village=local.village!=='-'?local.village:remote.village;local.district=local.district!=='-'?local.district:remote.district;local.address=remote.address;local.source='Batas Administrasi Lombok Timur + alamat internet';return local})}
+  function locate(success,failed){
+    if(!navigator.geolocation){failed({code:0,message:'Geolocation tidak tersedia'});return}
+    var finished=false;
+    function done(position){if(finished)return;finished=true;success(position)}
+    function lastError(error){if(finished)return;finished=true;failed(error||{code:0,message:'Lokasi tidak tersedia'})}
+    navigator.geolocation.getCurrentPosition(done,function(firstError){
+      if(firstError&&firstError.code===1){lastError(firstError);return}
+      navigator.geolocation.getCurrentPosition(done,lastError,{enableHighAccuracy:false,timeout:30000,maximumAge:300000});
+    },{enableHighAccuracy:true,timeout:20000,maximumAge:15000});
+  }
+  function locationErrorText(error){
+    if(!window.isSecureContext)return 'GPS browser hanya dapat digunakan melalui HTTPS. Buka GeoPATUH dari https://atrbpnproject.github.io/geopatuh/, bukan alamat HTTP atau IP lokal.';
+    if(error&&error.code===1)return 'Akses lokasi ditolak oleh browser. Buka pengaturan situs GeoPATUH, pilih Lokasi: Izinkan, lalu muat ulang halaman.';
+    if(error&&error.code===2)return 'Sinyal lokasi perangkat belum tersedia. Aktifkan GPS/Location perangkat dan coba di area yang lebih terbuka.';
+    if(error&&error.code===3)return 'Pembacaan lokasi terlalu lama. Pastikan GPS perangkat aktif lalu coba kembali.';
+    return 'Lokasi perangkat belum dapat dibaca. Aktifkan GPS dan izin lokasi browser lalu coba kembali.';
+  }
   function report(canvas,lat,lon,admin,stamp,w){
     if(!w){alert('Izinkan pop-up untuk membuka laporan PDF.');return}
     var photo=canvas.toDataURL('image/jpeg',.93);
@@ -33,7 +50,46 @@
     w.document.write(html);
     w.document.close();
   }
-  function capture(){if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){alert('Kamera tidak tersedia pada browser ini.');return}navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false}).then(function(stream){var video=document.createElement('video'),snap=document.createElement('button');video.autoplay=true;video.playsInline=true;video.srcObject=stream;video.style.cssText='position:fixed;z-index:2800;inset:6%;width:88%;height:78%;object-fit:contain;background:#000;border-radius:14px';snap.textContent='Jepret dan Buat PDF';snap.style.cssText='position:fixed;z-index:2801;left:50%;bottom:7%;transform:translateX(-50%);padding:13px 24px;border:0;border-radius:10px;background:#0878cf;color:#fff;font-weight:700';document.body.append(video,snap);snap.onclick=function(){if(!video.videoWidth){alert('Kamera belum siap.');return}var canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;canvas.getContext('2d').drawImage(video,0,0);stream.getTracks().forEach(function(t){t.stop()});video.remove();snap.remove();var reserved=window.open('','_blank');if(!reserved){alert('Browser memblokir halaman laporan. Izinkan pop-up untuk GeoPATUH.');return}reserved.document.open();reserved.document.write('<!doctype html><title>Menyiapkan laporan...</title><p style="font:16px Arial;padding:24px">Menyiapkan foto, lokasi, dan laporan PDF...</p>');reserved.document.close();navigator.geolocation.getCurrentPosition(function(pos){var lat=pos.coords.latitude,lon=pos.coords.longitude,stamp=new Date();adminAt(lon,lat).then(function(a){report(canvas,lat,lon,a,stamp,reserved)})},function(){try{reserved.document.body.innerHTML='<p style="font:16px Arial;padding:24px">Lokasi tidak tersedia. Kembali ke GeoPATUH dan aktifkan izin lokasi.</p>'}catch(e){}alert('Izin lokasi diperlukan untuk membuat laporan geotag.')},{enableHighAccuracy:true,timeout:15000,maximumAge:0})}}).catch(function(){alert('Izin kamera diperlukan untuk mengambil foto.')})}
+  function capture(){
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){alert('Kamera tidak tersedia pada browser ini.');return}
+    var status=document.createElement('div');
+    status.textContent='Mengambil koordinat lokasi…';
+    status.style.cssText='position:fixed;z-index:2900;left:50%;top:50%;transform:translate(-50%,-50%);padding:15px 20px;border-radius:12px;background:#08233e;color:#fff;font:700 14px Arial;box-shadow:0 10px 35px #0007';
+    document.body.appendChild(status);
+    locate(function(pos){
+      var capturedPosition={latitude:pos.coords.latitude,longitude:pos.coords.longitude,accuracy:pos.coords.accuracy||0,timestamp:pos.timestamp||Date.now()},watchId=null;
+      status.textContent='Koordinat diperoleh. Membuka kamera…';
+      navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false}).then(function(stream){
+        status.remove();
+        var video=document.createElement('video'),snap=document.createElement('button');
+        watchId=navigator.geolocation.watchPosition(function(update){capturedPosition={latitude:update.coords.latitude,longitude:update.coords.longitude,accuracy:update.coords.accuracy||0,timestamp:update.timestamp||Date.now()}},function(){},{enableHighAccuracy:true,maximumAge:0,timeout:20000});
+        video.autoplay=true;video.playsInline=true;video.srcObject=stream;
+        video.style.cssText='position:fixed;z-index:2800;inset:6%;width:88%;height:78%;object-fit:contain;background:#000;border-radius:14px';
+        snap.textContent='Jepret dan Buat PDF';
+        snap.style.cssText='position:fixed;z-index:2801;left:50%;bottom:7%;transform:translateX(-50%);padding:13px 24px;border:0;border-radius:10px;background:#0878cf;color:#fff;font-weight:700';
+        document.body.append(video,snap);
+        snap.onclick=function(){
+          if(!video.videoWidth){alert('Kamera belum siap.');return}
+          var canvas=document.createElement('canvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;canvas.getContext('2d').drawImage(video,0,0);
+          var stamp=new Date();
+          stream.getTracks().forEach(function(t){t.stop()});video.remove();snap.remove();
+          var reserved=window.open('','_blank');
+          if(!reserved){if(watchId!=null)navigator.geolocation.clearWatch(watchId);alert('Browser memblokir halaman laporan. Izinkan pop-up untuk GeoPATUH.');return}
+          reserved.document.open();reserved.document.write('<!doctype html><title>Menyiapkan laporan...</title><p style="font:16px Arial;padding:24px">Mengunci koordinat saat foto dijepret…</p>');reserved.document.close();
+          var completed=false;
+          function build(position){
+            if(completed)return;completed=true;if(watchId!=null)navigator.geolocation.clearWatch(watchId);
+            var lat=position.latitude,lon=position.longitude;
+            try{reserved.document.body.innerHTML='<p style="font:16px Arial;padding:24px">Menganalisis koordinat terhadap batas administrasi dan menyiapkan PDF...</p>'}catch(e){}
+            adminAt(lon,lat).then(function(a){report(canvas,lat,lon,a,stamp,reserved)});
+          }
+          var positionAge=Math.abs(stamp.getTime()-capturedPosition.timestamp);
+          if(positionAge<=5000){build(capturedPosition);return}
+          navigator.geolocation.getCurrentPosition(function(fresh){build({latitude:fresh.coords.latitude,longitude:fresh.coords.longitude,accuracy:fresh.coords.accuracy||0,timestamp:fresh.timestamp||Date.now()})},function(){build(capturedPosition)},{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+        };
+      }).catch(function(error){if(watchId!=null)navigator.geolocation.clearWatch(watchId);status.remove();alert(error&&error.name==='NotAllowedError'?'Izin kamera ditolak. Aktifkan izin kamera pada pengaturan situs GeoPATUH.':'Kamera perangkat belum dapat dibuka.')});
+    },function(error){status.remove();alert(locationErrorText(error))});
+  }
   function init(){var menu=document.querySelector('.lontar-toolbox-menu');if(!menu||menu.querySelector('[data-geotag-report]'))return;var b=document.createElement('button');b.className='lontar-toolbox-item';b.type='button';b.dataset.geotagReport='1';b.innerHTML='<i class="fas fa-camera"></i>Foto & PDF Geotag';b.onclick=capture;menu.appendChild(b)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 }());
