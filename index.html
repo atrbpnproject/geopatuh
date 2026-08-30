@@ -547,7 +547,7 @@
     // GEOPATUH_INTERNAL_JS_ADVANCED_END
     var mobile=document.querySelector('[data-mobile="layers"]');mobile.addEventListener('click',function(){var panel=document.getElementById('layerPanel');if(panel.classList.contains('explorer-mode-hidden')&&typeof restoreFullFieldExplorer==='function'){restoreFullFieldExplorer();setFieldWorkflow(false,false)}panel.classList.toggle('open');this.classList.toggle('active')});map.on('click',function(e){if(isMeasuring)return;if(typeof handleExplorerMapClick==='function'&&handleExplorerMapClick(e.latlng))return;if(innerWidth<=760){document.getElementById('layerPanel').classList.remove('open');mobile.classList.remove('active')}analyzePoint(e.latlng)});map.on('layeradd layerremove',updateStats);
     function toast(text){var t=document.getElementById('toast');t.textContent=text;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
-    var nativeWindowOpen=window.open.bind(window);
+    var nativeWindowOpen=window.open.bind(window);window.__geopatuhNativeWindowOpen=nativeWindowOpen;
     window.open=function(url,target,features){
       var isPrintDocument=url===''||url==='about:blank',opened,printFrame,previousPageTitle=document.title;
       if(isPrintDocument){
