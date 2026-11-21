@@ -1,9 +1,9 @@
 {
   "status": "success",
   "message": "Aplikasi dan layer disinkronkan dari Bale Ruang NTB (wilayah Lombok Timur).",
-  "updatedAt": "2026-11-21T13:10:50+08:00",
+  "updatedAt": "2026-11-21T14:01:01+08:00",
   "source": "https://github.com/atrbpnproject/baleruangntb",
-  "ref": "bf6c739d1f676eb8261ad1f2741044411335dc9c",
+  "ref": "2d8daf36f8c3fad9b6cc2e907bc0936ded5b52fc",
   "region": "Lombok Timur",
   "admin": {
     "villages": 395,
