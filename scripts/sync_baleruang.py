@@ -84,10 +84,10 @@ PATCHES = [
      "return k.indexOf('geopatuh-') === 0 && k !== VERSION && k !== STATIC;", 1),
     # Identitas visual GeoPATUH (menubar & splash) dari overlay/css/geopatuh-theme.css.
     ("index.html", '<meta name="theme-color" content="#0b3a66">',
-     '<meta name="theme-color" content="#123a3e">\n  <link rel="stylesheet" href="css/geopatuh-theme.css?v=2">', 1),
+     '<meta name="theme-color" content="#123a3e">\n  <link rel="stylesheet" href="css/geopatuh-theme.css?v=3">', 1),
     # Aplikasi terpasang (PWA) terpisah dari Bale Ruang: manifest GeoPATUH punya id /geopatuh/.
     ("index.html", '<link rel="manifest" href="manifest.webmanifest">',
-     '<link rel="manifest" href="manifest.webmanifest?v=geopatuh-2">', 1),
+     '<link rel="manifest" href="manifest.webmanifest?v=geopatuh-2">\n  <script src="js/geopatuh-install.js?v=1" defer></script>', 1),
     # --- Cakupan Lombok Timur ---
     ("index.html", "NTB_HOME_CENTER=[-8.55,117.20],NTB_HOME_ZOOM=8",
      "NTB_HOME_CENTER=%s,NTB_HOME_ZOOM=%s" % (HOME_CENTER, HOME_ZOOM), 1),
