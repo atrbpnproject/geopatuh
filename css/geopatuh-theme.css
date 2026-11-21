@@ -1,0 +1,38 @@
+/* GeoPATUH — identitas visual sendiri di atas tampilan Bale Ruang NTB.
+   Palet tenang dan profesional: satu warna dasar hijau-petrol tua, aksen teal redam,
+   tanpa gradasi warna-warni. Berbeda dari Bale Ruang (biru navy + emas).
+   Berkas ini dimuat setelah gaya Bale Ruang (lihat PATCHES di scripts/sync_baleruang.py). */
+:root{--gp-base:#123a3e;--gp-base-dark:#0d2c30;--gp-accent:#2a8a80;--gp-accent-hover:#31998e;--gp-icon:#9fcbc5;--gp-text:#eef5f4;--gp-muted:#a9c4c1}
+
+/* ---------- Menubar ---------- */
+html body .header{background:var(--gp-base)!important;border-bottom:1px solid rgba(255,255,255,.08)!important;box-shadow:0 2px 12px rgba(8,30,33,.25)!important}
+html body .header .brand small{color:var(--gp-muted)!important}
+html body .head-actions .btn{color:var(--gp-text)!important}
+html body .head-actions .btn i{color:var(--gp-icon)!important}
+html body .head-actions .btn:hover,html body .head-actions .btn[aria-expanded="true"]{border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.07)!important}
+html body .head-actions .btn[data-open="upload"]{border-color:transparent!important;background:var(--gp-accent)!important}
+html body .head-actions .btn[data-open="upload"] i{color:#fff!important}
+html body .head-actions .btn[data-open="upload"]:hover{background:var(--gp-accent-hover)!important}
+
+/* ---------- Splash screen: logo muncul dengan cincin progres tipis ---------- */
+html body #brSplash{background:var(--gp-base-dark)}
+html body #brSplash .br-topo,html body #brSplash .br-ping{display:none}
+html body #brSplash .br-grid{background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px}
+html body #brSplash .br-mark{width:132px;height:132px;margin-bottom:20px}
+/* cincin tipis yang berputar pelan mengelilingi logo */
+html body #brSplash .br-mark::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.08);border-top-color:var(--gp-accent);animation:gpSpin 1.4s linear infinite,gpFade .5s ease .3s both}
+html body #brSplash .br-mark img{width:84px;height:84px;filter:none;animation:gpRise .7s ease-out .1s both}
+html body #brSplash h1{color:#fff;font-weight:600;letter-spacing:.02em;animation:gpRise .6s ease-out .35s both}
+html body #brSplash h1 span{color:inherit}
+html body #brSplash p{color:var(--gp-muted);animation:gpRise .6s ease-out .5s both}
+html body #brSplash .br-load{width:min(260px,70vw);animation:gpFade .6s ease .7s both}
+html body #brSplash .br-bar{height:2px;background:rgba(255,255,255,.1)}
+html body #brSplash .br-bar i{width:30%;background:var(--gp-accent);animation:gpSlide 1.3s ease-in-out infinite}
+html body #brSplash .br-load small{color:#7fa29e}
+html body #brSplash .br-foot{color:rgba(169,196,193,.5)}
+html body #brSplash.br-out .br-core{transform:none}
+@keyframes gpRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes gpFade{from{opacity:0}to{opacity:1}}
+@keyframes gpSpin{to{transform:rotate(360deg)}}
+@keyframes gpSlide{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+@media (prefers-reduced-motion:reduce){html body #brSplash *,html body #brSplash .br-mark::before{animation:none!important}}
