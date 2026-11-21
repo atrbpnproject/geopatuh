@@ -1,1 +1,0 @@
-window.__GEOPATUH_DISPLAY_CHUNKS__=window.__GEOPATUH_DISPLAY_CHUNKS__||{};window.__GEOPATUH_DISPLAY_CHUNKS__["strategis|2329:-170"]={"type":"FeatureCollection","features":[{"type":"Feature","properties":{"NM":"KAWASAN GUNUNG RINJANI"},"geometry":{"type":"MultiPolygon","coordinates":[[[[116.45,-8.5],[116.5,-8.5],[116.5,-8.45],[116.45,-8.45],[116.45,-8.5]]]]},"id":8}]};

@@ -1,0 +1,67 @@
+name: Sinkronkan Bale Ruang
+
+# GeoPATUH = Bale Ruang NTB edisi Kabupaten Lombok Timur.
+# Workflow ini menyalin aplikasi (fitur & tampilan) dan data layer wilayah
+# Lombok Timur dari atrbpnproject/baleruangntb, lalu menerapkan identitas
+# GeoPATUH lewat scripts/sync_baleruang.py.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  # Dipicu langsung dari repositori Bale Ruang setelah data diperbarui.
+  repository_dispatch:
+    types: [baleruang-updated]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-baleruang
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil GeoPATUH
+        uses: actions/checkout@v4
+
+      - name: Cek versi terbaru Bale Ruang
+        id: ref
+        run: |
+          sha=$(git ls-remote https://github.com/atrbpnproject/baleruangntb HEAD | cut -f1)
+          last=$(python3 -c "import json;print(json.load(open('data/baleruang_status.json')).get('ref',''))" 2>/dev/null || true)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          if [ "$sha" = "$last" ] && [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "Bale Ruang belum berubah sejak sinkronisasi terakhir ($sha)."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ambil Bale Ruang NTB
+        if: steps.ref.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: atrbpnproject/baleruangntb
+          ref: ${{ steps.ref.outputs.sha }}
+          path: _baleruang
+          persist-credentials: false
+
+      - name: Salin aplikasi & layer Lombok Timur
+        if: steps.ref.outputs.skip != 'true'
+        run: python3 scripts/sync_baleruang.py --source _baleruang --ref "${{ steps.ref.outputs.sha }}"
+
+      - name: Simpan hasil sinkronisasi
+        if: steps.ref.outputs.skip != 'true'
+        run: |
+          rm -rf _baleruang
+          git config user.name "geopatuh-sync"
+          git config user.email "geopatuh-sync@users.noreply.github.com"
+          git add -A index.html sw.js manifest.webmanifest css js legend webfonts images regulasi data
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan."
+          else
+            git commit -m "chore: sinkronkan GeoPATUH dari Bale Ruang NTB ${{ steps.ref.outputs.sha }}"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi

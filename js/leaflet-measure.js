@@ -7083,6 +7083,7 @@ L.Control.Measure = L.Control.extend({
     captureZIndex: 10000,       // z-index of the marker used to capture measure events
     popupOptions: {             // standard leaflet popup options http://leafletjs.com/reference.html#popup-options
       className: 'leaflet-measure-resultpopup',
+      autoPan: false,
       autoPanPadding: [10, 10]
     }
   },
@@ -7191,6 +7192,12 @@ L.Control.Measure = L.Control.extend({
   },
   // get state vars and interface ready for measure
   _startMeasure: function () {
+    var finishPolygonButton = document.getElementById('finishPolygonButton');
+    if (finishPolygonButton) {
+      finishPolygonButton.removeAttribute('hidden');
+      finishPolygonButton.style.display = 'block';
+      finishPolygonButton.setAttribute('data-point-count', '0');
+    }
     this._locked = true;
     this._measureVertexes = L.featureGroup().addTo(this._layer);
     this._captureMarker = L.marker(this._map.getCenter(), {
@@ -7219,6 +7226,11 @@ L.Control.Measure = L.Control.extend({
   },
   // return to state with no measure in progress, undo `this._startMeasure`
   _finishMeasure: function () {
+    var finishPolygonButton = document.getElementById('finishPolygonButton');
+    if (finishPolygonButton) {
+      finishPolygonButton.setAttribute('hidden', 'hidden');
+      finishPolygonButton.style.display = 'none';
+    }
     var model = _.extend({}, this._resultsModel, {
       points: this._latlngs
     });
@@ -7422,6 +7434,11 @@ L.Control.Measure = L.Control.extend({
         }
       ).openTooltip();
     }
+    // Bale Ruang NTB: hasil ukur luas (poligon) tidak memakai popup agar bidang tidak tertutup;
+    // luas, keliling, export, dan hapus tersedia di panel analisis bidang.
+    if (latlngs.length > 2) {
+      return;
+    }
     resultFeature.bindPopup(popupContainer, this.options.popupOptions);
     if (resultFeature.getBounds) {
       resultFeature.openPopup(resultFeature.getBounds().getCenter());
@@ -7446,7 +7463,7 @@ L.Control.Measure = L.Control.extend({
         // reset all vertexes to non-active class - only last vertex is active
         // `layer.setStyle({ className: 'layer-measurevertex'})` doesn't work. https://github.com/leaflet/leaflet/issues/2662
         // set attribute on path directly
-        layer._path.setAttribute('class', vertexSymbol.className);
+        if (layer._path) layer._path.setAttribute('class', vertexSymbol.className); // titik belum digambar → lewati, jangan hentikan pengukuran
       });
 
       this._addNewVertex(latlng);
@@ -7459,6 +7476,18 @@ L.Control.Measure = L.Control.extend({
 
     this._updateResults();
     this._updateMeasureStartedWithPoints();
+    var finishPolygonButton = document.getElementById('finishPolygonButton');
+    if (finishPolygonButton) {
+      finishPolygonButton.setAttribute('data-point-count', String(this._latlngs.length));
+      if (this._latlngs.length >= 3) {
+        finishPolygonButton.removeAttribute('hidden');
+        finishPolygonButton.style.display = 'block';
+      } else {
+        finishPolygonButton.removeAttribute('hidden');
+        finishPolygonButton.style.display = 'block';
+      }
+    }
+    this._map.fire('measurepoint', { pointCount: this._latlngs.length }, false);
   },
   // handle map mouse out during ongoing measure
   // remove floating cursor vertex from map
