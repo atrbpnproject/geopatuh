@@ -82,6 +82,9 @@ PATCHES = [
     ("sw.js", "'bale-ruang-", "'geopatuh-", 2),
     ("sw.js", "return k !== VERSION && k !== STATIC;",
      "return k.indexOf('geopatuh-') === 0 && k !== VERSION && k !== STATIC;", 1),
+    # Identitas visual GeoPATUH (menubar & splash) dari overlay/css/geopatuh-theme.css.
+    ("index.html", '<meta name="theme-color" content="#0b3a66">',
+     '<meta name="theme-color" content="#3d0f4f">\n  <link rel="stylesheet" href="css/geopatuh-theme.css?v=1">', 1),
     # --- Cakupan Lombok Timur ---
     ("index.html", "NTB_HOME_CENTER=[-8.55,117.20],NTB_HOME_ZOOM=8",
      "NTB_HOME_CENTER=%s,NTB_HOME_ZOOM=%s" % (HOME_CENTER, HOME_ZOOM), 1),
@@ -103,6 +106,33 @@ REGEX_PATCHES = [
     # di GeoPATUH: panelnya dibuat oleh persil-layer.js, jadi cukup tidak dimuat.
     ("index.html", r'<script src="js/persil-(?:config|layer)\.js[^"]*"></script>\s*', "", 2),
 ]
+
+# Menu Regulasi: hanya peraturan nasional, provinsi/tematik, dan Lombok Timur.
+REGULASI_KEEP_GROUPS = {"Peraturan Nasional", "Provinsi", "Data Tematik"}
+
+
+def filter_regulasi(stage):
+    """Saring katalog di js/regulasi.js (antara /*KATALOG*/ dan /*END*/) dan
+    hapus PDF lokal di regulasi/ yang tidak lagi dirujuk."""
+    path = os.path.join(stage, "js", "regulasi.js")
+    with open(path, encoding="utf-8") as handle:
+        text = handle.read()
+    start, end = text.find("/*KATALOG*/"), text.find("/*END*/")
+    if start < 0 or end < start:
+        return ["js/regulasi.js: penanda /*KATALOG*/.../*END*/ tidak ditemukan"]
+    catalog = json.loads(text[start + len("/*KATALOG*/"):end])
+    kept = [e for e in catalog if e.get("pulau") in REGULASI_KEEP_GROUPS or e.get("wilayah") == REGION_NAME]
+    if not any(e.get("wilayah") == REGION_NAME for e in kept):
+        return ["js/regulasi.js: tidak ada regulasi %s di katalog" % REGION_NAME]
+    text = text[:start] + "/*KATALOG*/" + json.dumps(kept, ensure_ascii=False, separators=(",", ":")) + text[end:]
+    with open(path, "w", encoding="utf-8", newline="") as handle:
+        handle.write(text)
+    used = {f.get("file") for e in kept for f in e.get("files") or [] if f.get("file") and not f.get("ext")}
+    folder = os.path.join(stage, "regulasi")
+    for name in os.listdir(folder) if os.path.isdir(folder) else []:
+        if name.lower().endswith(".pdf") and name not in used:
+            os.remove(os.path.join(folder, name))
+    return []
 
 
 def read_assigned(path):
@@ -285,7 +315,7 @@ def main():
         for name in APP_DIRS:
             if os.path.isdir(os.path.join(source, name)):
                 shutil.copytree(os.path.join(source, name), os.path.join(stage, name))
-        problems = apply_patches(stage)
+        problems = apply_patches(stage) + filter_regulasi(stage)
         if problems:
             for problem in problems:
                 print("TAMBALAN GAGAL:", problem, file=sys.stderr)
