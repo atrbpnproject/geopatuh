@@ -88,6 +88,10 @@ PATCHES = [
     # Aplikasi terpasang (PWA) terpisah dari Bale Ruang: manifest GeoPATUH punya id /geopatuh/.
     ("index.html", '<link rel="manifest" href="manifest.webmanifest">',
      '<link rel="manifest" href="manifest.webmanifest?v=geopatuh-2">\n  <script src="js/geopatuh-install.js?v=1" defer></script>', 1),
+    # Tim GeoPATUH di dialog Tentang: tambahan anggota setelah pengembang teknis.
+    ("index.html", '<span class="team-role">Pengembang Teknis</span><strong>I Made Arjita, S.Kom.</strong></div>',
+     '<span class="team-role">Pengembang Teknis</span><strong>I Made Arjita, S.Kom.</strong></div>'
+     '<div class="team-person"><span class="team-role">Pengumpul Data</span><strong>Teguh Arya Wibawa</strong></div>', 1),
     # --- Cakupan Lombok Timur ---
     ("index.html", "NTB_HOME_CENTER=[-8.55,117.20],NTB_HOME_ZOOM=8",
      "NTB_HOME_CENTER=%s,NTB_HOME_ZOOM=%s" % (HOME_CENTER, HOME_ZOOM), 1),
