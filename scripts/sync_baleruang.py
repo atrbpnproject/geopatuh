@@ -84,7 +84,7 @@ PATCHES = [
      "return k.indexOf('geopatuh-') === 0 && k !== VERSION && k !== STATIC;", 1),
     # Identitas visual GeoPATUH (menubar & splash) dari overlay/css/geopatuh-theme.css.
     ("index.html", '<meta name="theme-color" content="#0b3a66">',
-     '<meta name="theme-color" content="#3d0f4f">\n  <link rel="stylesheet" href="css/geopatuh-theme.css?v=1">', 1),
+     '<meta name="theme-color" content="#123a3e">\n  <link rel="stylesheet" href="css/geopatuh-theme.css?v=2">', 1),
     # --- Cakupan Lombok Timur ---
     ("index.html", "NTB_HOME_CENTER=[-8.55,117.20],NTB_HOME_ZOOM=8",
      "NTB_HOME_CENTER=%s,NTB_HOME_ZOOM=%s" % (HOME_CENTER, HOME_ZOOM), 1),

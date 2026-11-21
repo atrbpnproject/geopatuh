@@ -1,46 +1,38 @@
 /* GeoPATUH — identitas visual sendiri di atas tampilan Bale Ruang NTB.
-   Warna diambil dari logo GeoPATUH: ungu tua, magenta, jingga-merah, kuning.
+   Palet tenang dan profesional: satu warna dasar hijau-petrol tua, aksen teal redam,
+   tanpa gradasi warna-warni. Berbeda dari Bale Ruang (biru navy + emas).
    Berkas ini dimuat setelah gaya Bale Ruang (lihat PATCHES di scripts/sync_baleruang.py). */
-:root{--gp-deep:#1c0726;--gp-plum:#3d0f4f;--gp-berry:#7a1857;--gp-magenta:#d0237a;--gp-coral:#ff4d3d;--gp-amber:#ffa62b;--gp-violet:#8a3ffc}
+:root{--gp-base:#123a3e;--gp-base-dark:#0d2c30;--gp-accent:#2a8a80;--gp-accent-hover:#31998e;--gp-icon:#9fcbc5;--gp-text:#eef5f4;--gp-muted:#a9c4c1}
 
 /* ---------- Menubar ---------- */
-html body .header{background:linear-gradient(100deg,var(--gp-deep) 0%,var(--gp-plum) 48%,var(--gp-berry) 100%)!important;border-bottom:0!important;box-shadow:0 6px 22px rgba(28,7,38,.38)!important}
-html body .header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--gp-amber),var(--gp-coral) 35%,var(--gp-magenta) 70%,var(--gp-violet));pointer-events:none}
-html body .header .brand small{color:#f2c8e2!important}
-html body .head-actions .btn{color:#fbeef6!important}
-html body .head-actions .btn i{color:#ffb86b!important}
-html body .head-actions .btn:hover,html body .head-actions .btn[aria-expanded="true"]{border-color:rgba(255,184,107,.35)!important;background:rgba(255,255,255,.10)!important}
-html body .head-actions .btn[data-open="upload"]{border-color:rgba(255,166,43,.55)!important;background:linear-gradient(135deg,var(--gp-coral),var(--gp-magenta))!important}
+html body .header{background:var(--gp-base)!important;border-bottom:1px solid rgba(255,255,255,.08)!important;box-shadow:0 2px 12px rgba(8,30,33,.25)!important}
+html body .header .brand small{color:var(--gp-muted)!important}
+html body .head-actions .btn{color:var(--gp-text)!important}
+html body .head-actions .btn i{color:var(--gp-icon)!important}
+html body .head-actions .btn:hover,html body .head-actions .btn[aria-expanded="true"]{border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.07)!important}
+html body .head-actions .btn[data-open="upload"]{border-color:transparent!important;background:var(--gp-accent)!important}
 html body .head-actions .btn[data-open="upload"] i{color:#fff!important}
-html body .head-actions .btn[data-open="upload"]:hover{background:linear-gradient(135deg,#ff6a4d,#e0338a)!important}
+html body .head-actions .btn[data-open="upload"]:hover{background:var(--gp-accent-hover)!important}
 
-/* ---------- Splash screen: "pin jatuh di atas lapisan peta" ---------- */
-html body #brSplash{background:radial-gradient(110% 85% at 50% 42%,#5a1a6e 0%,#2e0a3c 45%,#14041c 100%)}
+/* ---------- Splash screen: logo muncul dengan cincin progres tipis ---------- */
+html body #brSplash{background:var(--gp-base-dark)}
 html body #brSplash .br-topo,html body #brSplash .br-ping{display:none}
-/* titik-titik peta yang bergeser pelan */
-html body #brSplash .br-grid{background-image:radial-gradient(rgba(255,190,120,.22) 1.2px,transparent 1.4px);background-size:26px 26px;animation:gpDrift 14s linear infinite;-webkit-mask-image:radial-gradient(ellipse at center,#000 25%,transparent 70%);mask-image:radial-gradient(ellipse at center,#000 25%,transparent 70%)}
-html body #brSplash .br-mark{width:150px;height:150px;margin-bottom:14px}
-/* sapuan radar berputar di belakang logo */
-html body #brSplash .br-mark::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,77,61,0) 0deg,rgba(255,77,61,.0) 250deg,rgba(255,166,43,.55) 330deg,rgba(208,35,122,.9) 360deg);-webkit-mask:radial-gradient(circle,transparent 54%,#000 55%,#000 70%,transparent 71%);mask:radial-gradient(circle,transparent 54%,#000 55%,#000 70%,transparent 71%);animation:gpSpin 1.6s linear infinite,gpFade .5s ease .5s both}
-/* bayangan pin di permukaan peta */
-html body #brSplash .br-mark::after{content:"";position:absolute;left:50%;bottom:22px;width:70px;height:12px;margin-left:-35px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);animation:gpShadow .9s cubic-bezier(.3,1.4,.5,1) .15s both}
-html body #brSplash .br-mark img{width:92px;height:92px;z-index:1;filter:drop-shadow(0 8px 16px rgba(208,35,122,.45));animation:gpDrop .9s cubic-bezier(.3,1.4,.5,1) .15s both,gpFloat 2.6s ease-in-out 1.2s infinite}
-html body #brSplash h1{background:linear-gradient(90deg,var(--gp-amber),var(--gp-coral) 40%,var(--gp-magenta) 75%,#b46bff);-webkit-background-clip:text;background-clip:text;color:transparent;animation:gpWipe .8s cubic-bezier(.6,0,.2,1) .45s both}
+html body #brSplash .br-grid{background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px}
+html body #brSplash .br-mark{width:132px;height:132px;margin-bottom:20px}
+/* cincin tipis yang berputar pelan mengelilingi logo */
+html body #brSplash .br-mark::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.08);border-top-color:var(--gp-accent);animation:gpSpin 1.4s linear infinite,gpFade .5s ease .3s both}
+html body #brSplash .br-mark img{width:84px;height:84px;filter:none;animation:gpRise .7s ease-out .1s both}
+html body #brSplash h1{color:#fff;font-weight:600;letter-spacing:.02em;animation:gpRise .6s ease-out .35s both}
 html body #brSplash h1 span{color:inherit}
-html body #brSplash p{color:#ecc9e4;animation:gpUp .6s ease .75s both}
-html body #brSplash .br-load{width:min(300px,72vw);animation:gpUp .6s ease .9s both}
-html body #brSplash .br-bar{height:4px;background:rgba(255,255,255,.10)}
-html body #brSplash .br-bar i{width:100%;transform-origin:left;background:linear-gradient(90deg,var(--gp-amber),var(--gp-coral),var(--gp-magenta),var(--gp-violet));animation:gpFill 1.4s cubic-bezier(.65,0,.35,1) infinite}
-html body #brSplash .br-load small{color:#d7a9cc}
-html body #brSplash .br-foot{color:rgba(236,201,228,.55)}
-html body #brSplash.br-out .br-core{transform:translateY(-14px) scale(.96)}
-@keyframes gpDrop{0%{opacity:0;transform:translateY(-120px) scale(.9)}60%{opacity:1;transform:translateY(6px) scale(1.04,.94)}100%{opacity:1;transform:none}}
-@keyframes gpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes gpShadow{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:scale(1)}}
-@keyframes gpSpin{to{transform:rotate(360deg)}}
+html body #brSplash p{color:var(--gp-muted);animation:gpRise .6s ease-out .5s both}
+html body #brSplash .br-load{width:min(260px,70vw);animation:gpFade .6s ease .7s both}
+html body #brSplash .br-bar{height:2px;background:rgba(255,255,255,.1)}
+html body #brSplash .br-bar i{width:30%;background:var(--gp-accent);animation:gpSlide 1.3s ease-in-out infinite}
+html body #brSplash .br-load small{color:#7fa29e}
+html body #brSplash .br-foot{color:rgba(169,196,193,.5)}
+html body #brSplash.br-out .br-core{transform:none}
+@keyframes gpRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes gpFade{from{opacity:0}to{opacity:1}}
-@keyframes gpWipe{from{clip-path:inset(0 100% 0 0);transform:translateX(-6px)}to{clip-path:inset(0 0 0 0);transform:none}}
-@keyframes gpUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes gpFill{0%{transform:scaleX(0);opacity:1}70%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
-@keyframes gpDrift{from{background-position:0 0}to{background-position:52px 26px}}
-@media (prefers-reduced-motion:reduce){html body #brSplash *,html body #brSplash .br-mark::before,html body #brSplash .br-mark::after{animation:none!important}}
+@keyframes gpSpin{to{transform:rotate(360deg)}}
+@keyframes gpSlide{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+@media (prefers-reduced-motion:reduce){html body #brSplash *,html body #brSplash .br-mark::before{animation:none!important}}
