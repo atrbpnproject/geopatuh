@@ -20,7 +20,7 @@ Yang disalin dari Bale Ruang:
 - **Aplikasi**: `index.html`, `sw.js`, `css/`, `js/`, `legend/`, `webfonts/`,
   `images/`, `regulasi/`. Seluruh fitur dan tampilan Bale Ruang (analisis titik
   dan bidang, Upload SHP/KML, Alat ukur, konversi SHP/KML, PDF KKPR ke poligon,
-  Foto & PDF Geotag, Regulasi, cetak laporan, layer Persil) ikut terbawa.
+  Foto & PDF Geotag, Regulasi, cetak laporan) ikut terbawa. Layer Persil/Bidang Tanah sengaja tidak dimuat di GeoPATUH.
 - **Data**: `data/analysis` (RTRW Provinsi, LSD, LP2B 2026, KP2B, LBS, PIPPIB,
   dan layer RTRW/RDTR/Kawasan Strategis Lombok Timur) serta `data/admin-index`
   (batas desa). Hanya sel grid 0,1° yang menyentuh Lombok Timur yang disalin,

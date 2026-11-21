@@ -27,6 +27,7 @@ import gzip
 import json
 import math
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -93,6 +94,14 @@ PATCHES = [
     ("index.html", "heading.className='section-title regional-island-title';",
      "heading.className='section-title regional-island-title';if(group.island!=='%s')heading.style.display='none';" % REGION_ISLAND, 1),
     ("index.html", "Data kabupaten/kota ada di bawah.", "Data Kabupaten Lombok Timur ada di bawah.", 0),
+]
+
+# (berkas, pola regex, pengganti, jumlah kemunculan minimal) untuk bagian yang
+# memuat nomor versi berubah-ubah (mis. ?v=...).
+REGEX_PATCHES = [
+    # Layer Persil / Bidang Tanah (BHUMI, BumiAtlas, URL sendiri) tidak dipakai
+    # di GeoPATUH: panelnya dibuat oleh persil-layer.js, jadi cukup tidak dimuat.
+    ("index.html", r'<script src="js/persil-(?:config|layer)\.js[^"]*"></script>\s*', "", 2),
 ]
 
 
@@ -218,8 +227,10 @@ def build_admin(src, dst):
     for ident in sorted(ids):
         copy_file(os.path.join(src, "%s.js" % ident), os.path.join(dst, "%s.js" % ident))
     os.makedirs(os.path.join(dst, "pidx"), exist_ok=True)
-    with gzip.open(os.path.join(dst, "pidx", "cells.json"), "wt", encoding="utf-8") as handle:
-        json.dump(sorted(cells), handle, separators=(",", ":"))
+    # mtime=0 agar hasil gzip sama persis setiap sinkron (tidak ada commit kosong).
+    with open(os.path.join(dst, "pidx", "cells.json"), "wb") as raw:
+        with gzip.GzipFile(fileobj=raw, mode="wb", mtime=0) as handle:
+            handle.write(json.dumps(sorted(cells), separators=(",", ":")).encode("utf-8"))
     kept = [e for e in index if e["id"] in ids]
     with open(os.path.join(dst, "index.js"), "w", encoding="utf-8", newline="\n") as handle:
         handle.write("window.__NTB_ADMIN_INDEX__=" + json.dumps(kept, separators=(",", ":")) + ";window.__NTB_ADMIN_META__=" + meta)
@@ -246,6 +257,16 @@ def apply_patches(stage):
             continue
         with open(path, "w", encoding="utf-8", newline="") as handle:
             handle.write(text.replace(old, new))
+    for rel, pattern, new, minimum in REGEX_PATCHES:
+        path = os.path.join(stage, rel)
+        with open(path, encoding="utf-8") as handle:
+            text = handle.read()
+        text, count = re.subn(pattern, new, text)
+        if count < minimum:
+            problems.append("%s: pola '%s' ditemukan %d kali (butuh >= %d)" % (rel, pattern[:60], count, minimum))
+            continue
+        with open(path, "w", encoding="utf-8", newline="") as handle:
+            handle.write(text)
     return problems
 
 
