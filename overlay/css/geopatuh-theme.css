@@ -36,3 +36,16 @@ html body #brSplash.br-out .br-core{transform:none}
 @keyframes gpSpin{to{transform:rotate(360deg)}}
 @keyframes gpSlide{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
 @media (prefers-reduced-motion:reduce){html body #brSplash *,html body #brSplash .br-mark::before{animation:none!important}}
+
+/* ---------- Tombol Install Aplikasi ---------- */
+html body .head-actions .btn.gp-install-head{border-color:rgba(255,255,255,.22)!important;background:rgba(255,255,255,.06)!important}
+html body .head-actions .btn.gp-install-head i{color:#fff!important}
+html body .head-actions .btn.gp-install-head:hover{background:rgba(255,255,255,.12)!important}
+.gp-install-fab{display:none}
+@media (max-width:900px){
+  html body .head-actions .btn.gp-install-head{display:none!important}
+  .gp-install-fab:not([hidden]){display:flex;position:fixed;z-index:1200;right:14px;bottom:calc(150px + env(safe-area-inset-bottom));align-items:center;gap:2px;padding:4px;border-radius:999px;background:var(--gp-base);box-shadow:0 6px 18px rgba(8,30,33,.35);animation:gpRise .35s ease-out both}
+  .gp-install-fab button{border:0;background:transparent;color:#fff;font:600 14px/1 inherit;cursor:pointer;white-space:nowrap}
+  .gp-install-fab .gp-install-go{display:flex;align-items:center;gap:8px;padding:11px 14px 11px 16px;border-radius:999px;background:var(--gp-accent)}
+  .gp-install-fab .gp-install-x{width:34px;height:34px;font-size:20px;color:var(--gp-muted)}
+}
