@@ -1,0 +1,74 @@
+{
+  "status": "success",
+  "message": "Aplikasi dan layer disinkronkan dari Bale Ruang NTB (wilayah Lombok Timur).",
+  "updatedAt": "2026-11-21T13:10:50+08:00",
+  "source": "https://github.com/atrbpnproject/baleruangntb",
+  "ref": "bf6c739d1f676eb8261ad1f2741044411335dc9c",
+  "region": "Lombok Timur",
+  "admin": {
+    "villages": 395,
+    "cells": 37
+  },
+  "layers": [
+    {
+      "key": "lsd",
+      "cells": 31,
+      "packs": 407,
+      "source": "NTB_LSD.zip (LSD Provinsi Nusa Tenggara Barat)"
+    },
+    {
+      "key": "lp2b",
+      "cells": 30,
+      "packs": 373,
+      "source": "Usulan Final LP2B Kab-Kota NTB (hasil verifikasi Kementerian ATR/BPN, surat Dirjen Tata Ruang 6 Okt 2026)"
+    },
+    {
+      "key": "lbs",
+      "cells": 31,
+      "packs": 415,
+      "source": "LBS SE NTB WGS84 - Copy.zip"
+    },
+    {
+      "key": "rtrw",
+      "cells": 40,
+      "packs": 435,
+      "source": "NTB_LSD.zip (LSD Provinsi Nusa Tenggara Barat)"
+    },
+    {
+      "key": "kp2b",
+      "cells": 39,
+      "packs": 127,
+      "source": "RTRW_PROV_NTB.shp dari RTRW PROV NTB.zip"
+    },
+    {
+      "key": "pippib",
+      "cells": 30,
+      "packs": 85,
+      "source": "PIPPIB_AR_250K_2025_1_NUSA_TENGGARA_BARAT (1).zip"
+    },
+    {
+      "key": "lotim-ks",
+      "cells": 28,
+      "packs": 9,
+      "source": "KawasanStrategisRTRWKabupatenLombokTimur20122032_5.js"
+    },
+    {
+      "key": "lotim-rtrw",
+      "cells": 32,
+      "packs": 248,
+      "source": "PolaRuangRTRWKabupatenLombokTimur20122032_6.js"
+    },
+    {
+      "key": "lotim-rdtr-sambelia",
+      "cells": 8,
+      "packs": 52,
+      "source": "PolaRuangRDTRWPSambeliadanSekitarnya20242043_7.js"
+    },
+    {
+      "key": "lotim-rdtr-pringgabaya",
+      "cells": 4,
+      "packs": 35,
+      "source": "PolaRuangRDTRWPPerkotaanPringgabaya20232042_8.js"
+    }
+  ]
+}

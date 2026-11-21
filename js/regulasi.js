@@ -1,0 +1,349 @@
+/* Bale Ruang NTB — menu Regulasi.
+   Katalog dokumen RTRW/RDTR yang dirujuk layer. Berkas kecil disimpan di folder regulasi/ aplikasi ini;
+   berkas besar (RDTR hasil pindai) disimpan di situs dokumen terpisah (REG_EXT_BASE) agar ukuran aplikasi tetap ringan. */
+(function () {
+  'use strict';
+  var REG_LOCAL_BASE = 'regulasi/';
+  var REG_EXT_BASE = 'https://atrbpnproject.github.io/regulasi/';
+  var REG_EXT_READY = true; // berkas besar sudah tersedia di situs dokumen
+  var KATALOG = /*KATALOG*/[{"id":"rtrw-ntb-2024","wilayah":"Provinsi NTB","pulau":"Provinsi","jenis":"RTRW","nomor":"Peraturan Daerah Provinsi NTB Nomor 5 Tahun 2024","tentang":"Rencana Tata Ruang Wilayah Provinsi Nusa Tenggara Barat Tahun 2024–2044","files":[{"label":"Dokumen lengkap + lampiran peta","file":"rtrw-ntb-2024.pdf","mb":38.8,"hal":603,"ext":true},{"label":"Sumber resmi","url":"https://peraturan.bpk.go.id/Details/296892/perda-prov-nusa-tenggara-barat-no-5-tahun-2024","sumber":"JDIH BPK RI","file":"","ext":true}],"match":["Perda Provinsi NTB No. 5 Tahun 2024"],"layers":[],"catatan":"","status":""},{"id":"lsd-kepmen-1589-2021-ntb","wilayah":"Lahan Sawah yang Dilindungi (LSD)","pulau":"Data Tematik","jenis":"Tematik","nomor":"Keputusan Menteri ATR/Kepala BPN Nomor 1589/SK-HK.02.01/XII/2021","tentang":"Penetapan Peta Lahan Sawah yang Dilindungi pada kabupaten/kota di 8 provinsi, termasuk Nusa Tenggara Barat","files":[{"label":"Batang tubuh + peta NTB","file":"lsd-kepmen-1589-2021-ntb.pdf","mb":1.4,"hal":24,"ext":false}],"match":[],"layers":[],"catatan":"Cuplikan: batang tubuh dan peta LSD bagian Provinsi NTB (halaman asli 162–172).","status":""},{"id":"uu-41-2009-lp2b","wilayah":"Lahan Pertanian Pangan Berkelanjutan (LP2B/KP2B)","pulau":"Data Tematik","jenis":"Tematik","nomor":"Undang-Undang Nomor 41 Tahun 2009","tentang":"Perlindungan Lahan Pertanian Pangan Berkelanjutan","files":[{"label":"Dokumen lengkap","file":"uu-41-2009-lp2b.pdf","mb":0.2,"hal":63,"ext":false}],"match":[],"layers":[8,9],"catatan":"","status":""},{"id":"pp-1-2011-lp2b","wilayah":"Lahan Pertanian Pangan Berkelanjutan (LP2B/KP2B)","pulau":"Data Tematik","jenis":"Tematik","nomor":"Peraturan Pemerintah Nomor 1 Tahun 2011","tentang":"Penetapan dan Alih Fungsi Lahan Pertanian Pangan Berkelanjutan","files":[{"label":"Dokumen lengkap","file":"pp-1-2011-lp2b.pdf","mb":0.1,"hal":32,"ext":false}],"match":[],"layers":[8,9],"catatan":"","status":""},{"id":"inpres-5-2019-pippib","wilayah":"Penghentian Pemberian Izin Baru (PIPPIB)","pulau":"Data Tematik","jenis":"Tematik","nomor":"Instruksi Presiden Nomor 5 Tahun 2019","tentang":"Penghentian Pemberian Izin Baru dan Penyempurnaan Tata Kelola Hutan Alam Primer dan Lahan Gambut","files":[{"label":"Dokumen lengkap","file":"inpres-5-2019-pippib.pdf","mb":0.3,"hal":5,"ext":false}],"match":[],"layers":[11],"catatan":"Dasar hukum PIPPIB. SK penetapan peta PIPPIB 2025 dari Kementerian Kehutanan belum tersedia.","status":""},{"id":"rtrw-mataram-2019","wilayah":"Kota Mataram","pulau":"Pulau Lombok","jenis":"RTRW","nomor":"Peraturan Daerah Kota Mataram Nomor 5 Tahun 2019","tentang":"Perubahan atas Perda Nomor 12 Tahun 2011 tentang RTRW Kota Mataram Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-mataram-2019.pdf","mb":0.8,"hal":134,"ext":false}],"match":["Perda Kota Mataram No. 5 Tahun 2019"],"layers":[],"catatan":"","status":""},{"id":"rdtr-mataram-2024","wilayah":"Kota Mataram","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Wali Kota Mataram Nomor 19 Tahun 2024","tentang":"RDTR Kecamatan Ampenan, Sekarbela, Mataram, dan Selaparang","files":[{"label":"Dokumen lengkap","file":"rdtr-mataram-2024.pdf","mb":11.9,"hal":276,"ext":true}],"match":["Perwali Kota Mataram No. 19 Tahun 2024"],"layers":[],"catatan":"","status":""},{"id":"rtrw-lombok-barat-2011","wilayah":"Lombok Barat","pulau":"Pulau Lombok","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Lombok Barat Nomor 11 Tahun 2011","tentang":"RTRW Kabupaten Lombok Barat Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-lombok-barat-2011.pdf","mb":1.7,"hal":129,"ext":false}],"match":["Perda Kabupaten Lombok Barat No. 11 Tahun 2011"],"layers":[],"catatan":"Naskah yang tersedia masih berjudul “Rancangan”.","status":""},{"id":"rdtr-geopark-2023","wilayah":"Lombok Barat","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Barat Nomor 13 Tahun 2023","tentang":"RDTR Kawasan Geopark Rinjani-Lombok Narmada Lingsar Tahun 2023–2043","files":[{"label":"Dokumen lengkap","file":"rdtr-geopark-2023.pdf","mb":37.6,"hal":266,"ext":true}],"match":["Perbup Lombok Barat No. 13 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rdtr-senggigi-2023","wilayah":"Lombok Barat","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Barat Nomor 14 Tahun 2023","tentang":"RDTR Kawasan Pariwisata Senggigi-Batulayar Tahun 2023–2043","files":[{"label":"Dokumen lengkap","file":"rdtr-senggigi-2023.pdf","mb":47.2,"hal":266,"ext":true}],"match":["Perbup Lombok Barat No. 14 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rdtr-sekotong-2023","wilayah":"Lombok Barat","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Barat Nomor 30 Tahun 2023","tentang":"RDTR Kawasan Utara Sekotong Tahun 2023–2043","files":[{"label":"Dokumen lengkap","file":"rdtr-sekotong-2023.pdf","mb":34.1,"hal":235,"ext":true}],"match":["Perbup Lombok Barat No. 30 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rtrw-lombok-tengah-2011","wilayah":"Lombok Tengah","pulau":"Pulau Lombok","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Lombok Tengah Nomor 7 Tahun 2011","tentang":"RTRW Kabupaten Lombok Tengah Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-lombok-tengah-2011.pdf","mb":1.3,"hal":61,"ext":false}],"match":["Perda Kabupaten Lombok Tengah No. 7 Tahun 2011"],"layers":[],"catatan":"","status":""},{"id":"rdtr-mandalika-2021","wilayah":"Lombok Tengah","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Tengah Nomor 105 Tahun 2021","tentang":"RDTR Sekitar Kawasan Ekonomi Khusus Mandalika Tahun 2021–2041","files":[{"label":"Dokumen lengkap","file":"rdtr-mandalika-2021.pdf","mb":48.7,"hal":148,"ext":true}],"match":["Perbup Lombok Tengah No. 105 Tahun 2021"],"layers":[],"catatan":"","status":""},{"id":"rdtr-selong-belanak-2023","wilayah":"Lombok Tengah","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Tengah Nomor 23 Tahun 2023","tentang":"RDTR Kawasan Selong Belanak Tahun 2023–2043","files":[{"label":"Dokumen lengkap","file":"rdtr-selong-belanak-2023.pdf","mb":4.9,"hal":42,"ext":false}],"match":["Perbup Lombok Tengah No. 23 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rtrw-lombok-timur-2012","wilayah":"Lombok Timur","pulau":"Pulau Lombok","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Lombok Timur Nomor 2 Tahun 2012","tentang":"RTRW Kabupaten Lombok Timur Tahun 2012–2032","files":[{"label":"Dokumen lengkap","file":"rtrw-lombok-timur-2012.pdf","mb":0.5,"hal":70,"ext":false}],"match":["Perda Kab. Lombok Timur No. 2 Tahun 2012"],"layers":[],"catatan":"","status":""},{"id":"rdtr-pringgabaya-2023","wilayah":"Lombok Timur","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Timur Nomor 16 Tahun 2023","tentang":"RDTR Wilayah Perencanaan Perkotaan Pringgabaya","files":[{"label":"Batang tubuh","file":"rdtr-pringgabaya-2023.pdf","mb":0.7,"hal":42,"ext":false},{"label":"Lampiran","file":"rdtr-pringgabaya-2023-lampiran.pdf","mb":9.4,"hal":130,"ext":true}],"match":["Perbup Lombok Timur No. 16 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rdtr-sambelia-2024","wilayah":"Lombok Timur","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Timur Nomor 11 Tahun 2024","tentang":"RDTR Wilayah Perencanaan Sambelia dan Sekitarnya Tahun 2024–2043","files":[{"label":"Dokumen lengkap","file":"rdtr-sambelia-2024.pdf","mb":7.7,"hal":220,"ext":true}],"match":["Perbup Lombok Timur No. 11 Tahun 2024"],"layers":[],"catatan":"","status":""},{"id":"rtrw-lombok-utara-2011","wilayah":"Lombok Utara","pulau":"Pulau Lombok","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Lombok Utara Nomor 9 Tahun 2011","tentang":"RTRW Kabupaten Lombok Utara Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-lombok-utara-2011.pdf","mb":0.4,"hal":58,"ext":false}],"match":["Perda Kabupaten Lombok Utara No. 9 Tahun 2011"],"layers":[],"catatan":"","status":""},{"id":"rdtr-tanjung-2020","wilayah":"Lombok Utara","pulau":"Pulau Lombok","jenis":"RDTR","nomor":"Peraturan Bupati Lombok Utara Nomor 20 Tahun 2020","tentang":"RDTR Kawasan Perkotaan Tanjung Tahun 2020–2040","files":[{"label":"Dokumen lengkap","file":"rdtr-tanjung-2020.pdf","mb":20.7,"hal":201,"ext":true}],"match":["Perbup Lombok Utara No. 20 Tahun 2020"],"layers":[],"catatan":"","status":""},{"id":"rtrw-sumbawa-barat-2020","wilayah":"Sumbawa Barat","pulau":"Pulau Sumbawa","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Sumbawa Barat Nomor 11 Tahun 2020","tentang":"RTRW Kabupaten Sumbawa Barat Tahun 2020–2040","files":[{"label":"Dokumen lengkap","file":"rtrw-sumbawa-barat-2020.pdf","mb":0.7,"hal":92,"ext":false}],"match":["Perda Kab. Sumbawa Barat No. 11 Tahun 2020"],"layers":[],"catatan":"","status":""},{"id":"rdtr-taliwang-2016","wilayah":"Sumbawa Barat","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Daerah Kabupaten Sumbawa Barat Nomor 12 Tahun 2016","tentang":"RDTR dan Peraturan Zonasi Kawasan Perkotaan Taliwang Tahun 2015–2035","files":[{"label":"Dokumen lengkap","file":"rdtr-taliwang-2016.pdf","mb":0.8,"hal":91,"ext":false}],"match":["Perda Sumbawa Barat No. 12 Tahun 2016"],"layers":[],"catatan":"","status":""},{"id":"rdtr-maluk-2023","wilayah":"Sumbawa Barat","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Bupati Sumbawa Barat Nomor 4 Tahun 2023","tentang":"RDTR Sekitar Kawasan Industri Maluk","files":[{"label":"Dokumen lengkap","file":"rdtr-maluk-2023.pdf","mb":7.0,"hal":120,"ext":true}],"match":["Perbup Sumbawa Barat No. 4 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rtrw-sumbawa-2012","wilayah":"Sumbawa","pulau":"Pulau Sumbawa","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Sumbawa Nomor 10 Tahun 2012","tentang":"RTRW Kabupaten Sumbawa Tahun 2011–2031","files":[{"label":"Batang tubuh","file":"rtrw-sumbawa-2012.pdf","mb":0.4,"hal":75,"ext":false}],"match":["Perda Kabupaten Sumbawa No. 10 Tahun 2012"],"layers":[],"catatan":"","status":""},{"id":"rdtr-sumbawa-besar-2023","wilayah":"Sumbawa","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Bupati Sumbawa Nomor 5 Tahun 2023","tentang":"RDTR Kawasan Perkotaan Sumbawa Besar","files":[{"label":"Dokumen lengkap","file":"rdtr-sumbawa-besar-2023.pdf","mb":17.6,"hal":139,"ext":true}],"match":["Perbup Sumbawa No. 5 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rtrw-dompu-2012","wilayah":"Dompu","pulau":"Pulau Sumbawa","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Dompu Nomor 2 Tahun 2012","tentang":"RTRW Kabupaten Dompu Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-dompu-2012.pdf","mb":0.3,"hal":101,"ext":false}],"match":["Perda Kab. Dompu No. 2 Tahun 2012"],"layers":[],"catatan":"Naskah yang tersedia belum mencantumkan nomor peraturan; bukan salinan resmi.","status":""},{"id":"rtrw-bima-2011","wilayah":"Kabupaten Bima","pulau":"Pulau Sumbawa","jenis":"RTRW","nomor":"Peraturan Daerah Kabupaten Bima Nomor 9 Tahun 2011","tentang":"RTRW Kabupaten Bima Tahun 2011–2031","files":[{"label":"Dokumen lengkap","file":"rtrw-bima-2011.pdf","mb":3.7,"hal":126,"ext":false}],"match":["Perda Kabupaten Bima No. 9 Tahun 2011"],"layers":[],"catatan":"","status":""},{"id":"rdtr-woha-2019","wilayah":"Kabupaten Bima","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Daerah Kabupaten Bima Nomor 1 Tahun 2019","tentang":"RDTR dan Peraturan Zonasi Kawasan Perkotaan Woha Tahun 2019–2039","files":[{"label":"Batang tubuh","file":"rdtr-woha-2019.pdf","mb":0.8,"hal":81,"ext":false},{"label":"Lampiran ITBX & peta","file":"rdtr-woha-2019-lampiran.pdf","mb":32.6,"hal":43,"ext":true}],"match":["Perda Kabupaten Bima No. 1 Tahun 2019"],"layers":[],"catatan":"","status":""},{"id":"rdtr-sape-2023","wilayah":"Kabupaten Bima","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Bupati Bima Nomor 31 Tahun 2023","tentang":"RDTR Kawasan Perkotaan Sape","files":[{"label":"Dokumen lengkap","file":"rdtr-sape-2023.pdf","mb":19.6,"hal":133,"ext":true}],"match":["Perbup Bima No. 31 Tahun 2023"],"layers":[],"catatan":"","status":""},{"id":"rdtr-monta-2021","wilayah":"Kabupaten Bima","pulau":"Pulau Sumbawa","jenis":"RDTR","nomor":"Peraturan Bupati Bima Nomor 42 Tahun 2021","tentang":"RDTR Wilayah Perencanaan Kecamatan Monta Tahun 2021–2041","files":[{"label":"Dokumen lengkap","file":"rdtr-monta-2021.pdf","mb":24.1,"hal":257,"ext":true}],"match":["Perbup Bima No. 42 Tahun 2021"],"layers":[],"catatan":"","status":""},{"id":"rtrw-kota-bima-2024","wilayah":"Kota Bima","pulau":"Pulau Sumbawa","jenis":"RTRW","nomor":"Peraturan Daerah Kota Bima Nomor 4 Tahun 2024","tentang":"RTRW Kota Bima Tahun 2024–2044","files":[{"label":"Dokumen lengkap","file":"rtrw-kota-bima-2024.pdf","mb":1.1,"hal":172,"ext":false}],"match":["Perda Kota Bima No. 4 Tahun 2024"],"layers":[],"catatan":"","status":""},{"id":"nas-uu-26-2007","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Undang-Undang Nomor 26 Tahun 2007","tentang":"Penataan Ruang","files":[{"label":"Dokumen lengkap","file":"nas-uu-26-2007.pdf","mb":0.3,"hal":60,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/924/UU_26_2007.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"Sebagian pasal telah diubah oleh UU Cipta Kerja.","status":""},{"id":"nas-pp-21-2021","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Pemerintah Nomor 21 Tahun 2021","tentang":"Penyelenggaraan Penataan Ruang","files":[{"label":"Dokumen lengkap","file":"nas-pp-21-2021.pdf","mb":10.6,"hal":275,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/950/PP%20Nomor%2021%20Tahun%202021.PDF","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-pp-26-2008","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Pemerintah Nomor 26 Tahun 2008","tentang":"Rencana Tata Ruang Wilayah Nasional","files":[{"label":"Dokumen lengkap","file":"nas-pp-26-2008.pdf","mb":0.2,"hal":75,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/927/PP_26_2008.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"Telah beberapa kali diubah; naskah ini adalah versi awal.","status":""},{"id":"nas-pp-43-2021","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Pemerintah Nomor 43 Tahun 2021","tentang":"Penyelesaian Ketidaksesuaian Tata Ruang, Kawasan Hutan, Izin, dan/atau Hak atas Tanah","files":[{"label":"Dokumen lengkap","file":"nas-pp-43-2021.pdf","mb":1.4,"hal":34,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/952/PP_Nomor_43_Tahun_2021.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-14-2021","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 14 Tahun 2021","tentang":"Pedoman Penyusunan Basis Data dan Penyajian Peta Rencana Tata Ruang","files":[{"label":"Dokumen lengkap","file":"nas-permen-14-2021.pdf","mb":5.9,"hal":323,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/998/Permen%20ATR%20KBPN%20Nomor%2014%20Tahun%202021%20tentang%20Basis%20Data%20_Garuda_upload..pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-6-2026","wilayah":"Dasar Penataan Ruang","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 6 Tahun 2026","tentang":"Perubahan atas Permen ATR/BPN Nomor 11 Tahun 2021 tentang Tata Cara Penyusunan, Peninjauan Kembali, Revisi, dan Persetujuan Substansi Rencana Tata Ruang","files":[{"label":"Dokumen lengkap","file":"nas-permen-6-2026.pdf","mb":1.3,"hal":16,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1228/2026pmatrkbpn006.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-13-2021","wilayah":"Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) & Pengendalian","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 13 Tahun 2021","tentang":"Pelaksanaan Kesesuaian Kegiatan Pemanfaatan Ruang dan Sinkronisasi Program Pemanfaatan Ruang","files":[{"label":"Dokumen lengkap","file":"nas-permen-13-2021.pdf","mb":3.9,"hal":203,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1004/Permen%20ATRBPN%2013%20Tahun%202021%20FULL_Edit%20168.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-21-2021","wilayah":"Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) & Pengendalian","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 21 Tahun 2021","tentang":"Pelaksanaan Pengendalian Pemanfaatan Ruang dan Pengawasan Penataan Ruang","files":[{"label":"Dokumen lengkap","file":"nas-permen-21-2021.pdf","mb":4.2,"hal":414,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1039/Permen%20ATR-KBPN%20Nomor%2021%20Tahun%202021%20tentang%20Pelaksanaan%20Pengendalian%20Pemanfaatan%20Ruang%20dan%20Pengawasan%20Penataan%20Ruang_Publikasi.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-juknis-6-2023","wilayah":"Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) & Pengendalian","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Petunjuk Teknis Nomor 6/Juknis-PF.01/VIII/2023","tentang":"Pelaksanaan Persetujuan KKPR untuk Kegiatan Berusaha","files":[{"label":"Dokumen lengkap","file":"nas-juknis-6-2023.pdf","mb":5.4,"hal":126,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1138/2.%20Petunjuk%20Teknis%20Pelaksanaan%20PKKPR%20untuk%20Kegiatan%20Berusaha.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-juknis-13-2023","wilayah":"Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) & Pengendalian","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Petunjuk Teknis Nomor 13/Juknis-PF.01/XII/2023","tentang":"Pelaksanaan KKPR untuk Kegiatan Nonberusaha secara Non-elektronik","files":[{"label":"Dokumen lengkap","file":"nas-juknis-13-2023.pdf","mb":9.5,"hal":195,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1144/Petunjuk%20Teknis%20KKPR%20Nonberusaha%20Nonelektronik.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-juknis-3-2025","wilayah":"Kesesuaian Kegiatan Pemanfaatan Ruang (KKPR) & Pengendalian","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Petunjuk Teknis Nomor 3/Juknis-HK.02.02/VII/2025","tentang":"Tata Laksana Forum Penataan Ruang Daerah untuk Penerbitan KKPR","files":[{"label":"Dokumen lengkap","file":"nas-juknis-3-2025.pdf","mb":2.2,"hal":50,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1206/3%20-%20Juknis%20Tata%20Laksana%20FPR%20Daerah%20untuk%20Penerbitan%20KKPR.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-perpres-4-2026","wilayah":"Lahan Sawah & LP2B","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Presiden Nomor 4 Tahun 2026","tentang":"Pengendalian Alih Fungsi Lahan Sawah","files":[{"label":"Dokumen lengkap","file":"nas-perpres-4-2026.pdf","mb":1.0,"hal":17,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1229/2026perpres004.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-2-2024","wilayah":"Lahan Sawah & LP2B","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 2 Tahun 2024","tentang":"Tata Cara Verifikasi Data Lahan Sawah terhadap Data Pertanahan dan Tata Ruang serta Penetapan Peta Lahan Sawah yang Dilindungi","files":[{"label":"Dokumen lengkap","file":"nas-permen-2-2024.pdf","mb":2.0,"hal":70,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/1185/2024pmatrkbpn002.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-permen-19-2016","wilayah":"Lahan Sawah & LP2B","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Peraturan Menteri ATR/Kepala BPN Nomor 19 Tahun 2016","tentang":"Penetapan LP2B pada Wilayah yang Belum Terbentuk Rencana Tata Ruang Wilayah","files":[{"label":"Dokumen lengkap","file":"nas-permen-19-2016.pdf","mb":4.1,"hal":7,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/314/Permen%2019%20Tahun%202016%20Penetapan%20Lahan%20Pertanian.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"","status":""},{"id":"nas-uu-27-2007","wilayah":"Pesisir","pulau":"Peraturan Nasional","jenis":"Nasional","nomor":"Undang-Undang Nomor 27 Tahun 2007","tentang":"Pengelolaan Wilayah Pesisir dan Pulau-Pulau Kecil","files":[{"label":"Dokumen lengkap","file":"nas-uu-27-2007.pdf","mb":0.2,"hal":45,"ext":true},{"label":"Sumber resmi","url":"https://jdih.atrbpn.go.id/peraturan/download/925/UU_27_2007.pdf","sumber":"JDIH ATR/BPN","file":"","ext":true}],"match":[],"layers":[],"catatan":"Telah diubah dengan UU Nomor 1 Tahun 2014.","status":""}]/*END*/;
+
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function norm(v) { return String(v || '').toLowerCase().replace(/\s+/g, ' ').trim(); }
+  function fileUrl(f) { return f.url || ((f.ext ? REG_EXT_BASE : REG_LOCAL_BASE) + f.file); }
+  function fileReady(f) { return !!f.url || !f.ext || REG_EXT_READY; }
+  function entryReady(e) { return e.files.length && e.files.some(fileReady); }
+  function mb(v) { return (v < 1 ? v.toFixed(1) : Math.round(v)).toString().replace('.', ',') + ' MB'; }
+
+  var byLegal = Object.create(null);
+  KATALOG.forEach(function (e) { e.match.forEach(function (m) { byLegal[norm(m)] = e; }); });
+
+  function findByLegal(legal) { return byLegal[norm(legal)] || null; }
+  window.brRegulasiFor = findByLegal;
+  // Tombol kecil untuk Rincian hasil analisis (hanya bila dokumennya sudah dapat dibuka).
+  function findByLayer(idx) { for (var i = 0; i < KATALOG.length; i++) if ((KATALOG[i].layers || []).indexOf(idx) >= 0) return KATALOG[i]; return null; }
+  window.brRegulasiLink = function (legal, layerIndex) {
+    var e = (legal && findByLegal(legal)) || (layerIndex != null ? findByLayer(layerIndex) : null);
+    if (!e || !entryReady(e)) return '';
+    return '<button type="button" class="reg-link" data-reg-open="' + esc(e.id) + '"><i class="fas fa-balance-scale"></i>Lihat regulasi</button>';
+  };
+
+  var state = { q: '', jenis: 'Semua', focus: '' };
+  var TYPES = { RTRW: ['t-rtrw', 'fa-map'], RDTR: ['t-rdtr', 'fa-th-large'], Tematik: ['t-tem', 'fa-leaf'], Nasional: ['t-nas', 'fa-balance-scale'] };
+  // Judul ringkas (baris utama) dan nomor ringkas (baris kedua) agar daftar mudah dipindai.
+  function shortNomor(n) {
+    return String(n || '')
+      .replace(/^Peraturan Daerah (Provinsi NTB|Kabupaten [A-Za-z ]+?|Kota [A-Za-z ]+?) Nomor/, 'Perda No.')
+      .replace(/^Peraturan Bupati [A-Za-z ]+? Nomor/, 'Perbup No.')
+      .replace(/^Peraturan Wali Kota [A-Za-z ]+? Nomor/, 'Perwali No.')
+      .replace(/^Peraturan Pemerintah Nomor/, 'PP No.')
+      .replace(/^Peraturan Presiden Nomor/, 'Perpres No.')
+      .replace(/^Instruksi Presiden Nomor/, 'Inpres No.')
+      .replace(/^Undang-Undang Nomor/, 'UU No.')
+      .replace(/^Peraturan Menteri ATR\/Kepala BPN Nomor/, 'Permen ATR/BPN No.')
+      .replace(/^Keputusan Menteri ATR\/Kepala BPN Nomor/, 'Kepmen ATR/BPN No.')
+      .replace(/^Petunjuk Teknis Nomor/, 'Juknis No.');
+  }
+  var TITLE = {
+    'lsd-kepmen-1589-2021-ntb': 'Penetapan Peta LSD (termasuk NTB)',
+    'uu-41-2009-lp2b': 'Perlindungan LP2B',
+    'pp-1-2011-lp2b': 'Penetapan dan Alih Fungsi LP2B',
+    'inpres-5-2019-pippib': 'Penghentian Izin Baru Hutan Primer & Gambut',
+    'rtrw-mataram-2019': 'RTRW 2011–2031 (perubahan)',
+    'rdtr-mataram-2024': 'RDTR Ampenan, Sekarbela, Mataram, Selaparang',
+    'nas-pp-43-2021': 'Penyelesaian Ketidaksesuaian Tata Ruang',
+    'nas-permen-14-2021': 'Basis Data & Penyajian Peta RTR',
+    'nas-permen-6-2026': 'Penyusunan & Revisi RTR (ubah Permen 11/2021)',
+    'nas-permen-13-2021': 'Pelaksanaan KKPR & Sinkronisasi Program',
+    'nas-permen-21-2021': 'Pengendalian & Pengawasan Pemanfaatan Ruang',
+    'nas-juknis-6-2023': 'Persetujuan KKPR Kegiatan Berusaha',
+    'nas-juknis-13-2023': 'KKPR Kegiatan Nonberusaha',
+    'nas-juknis-3-2025': 'Forum Penataan Ruang Daerah',
+    'nas-permen-2-2024': 'Verifikasi Lahan Sawah & Penetapan LSD',
+    'nas-permen-19-2016': 'Penetapan LP2B tanpa RTRW',
+    'nas-uu-27-2007': 'Wilayah Pesisir & Pulau-Pulau Kecil',
+    'nas-pp-26-2008': 'RTRW Nasional'
+  };
+  function shortTitle(e) {
+    if (TITLE[e.id]) return TITLE[e.id];
+    var t = String(e.tentang || '');
+    if (e.jenis === 'RTRW' || e.jenis === 'RDTR') {
+      t = t.replace(/^Rencana Tata Ruang Wilayah Provinsi Nusa Tenggara Barat/, 'RTRW Provinsi')
+        .replace(/^Rencana Tata Ruang Wilayah/, 'RTRW').replace(/^Rencana Detail Tata Ruang/, 'RDTR')
+        .replace(/^RTRW (Kabupaten|Kota) [A-Za-z ]+?(?= Tahun| \d|$)/, 'RTRW')
+        .replace(/^RDTR dan Peraturan Zonasi/, 'RDTR & PZ').replace('Wilayah Perencanaan', 'WP')
+        .replace('Kawasan Ekonomi Khusus', 'KEK').replace(/Tahun (\d{4}\s*[–-]\s*\d{4})/, '$1').replace(/\s+/g, ' ').trim();
+    }
+    return t;
+  }
+  function metaOf(f) { return f.url ? (f.sumber || 'Situs resmi') : f.hal + ' hlm · ' + mb(f.mb); }
+  function itemHtml(e) {
+    var ty = TYPES[e.jenis] || TYPES.Nasional, ready = e.files.filter(fileReady), main = ready.filter(function (f) { return !f.url; })[0] || ready[0];
+    var tip = e.nomor + ' tentang ' + e.tentang + (main && !main.url ? ' (' + metaOf(main) + ')' : '');
+    var head = '<span class="rg-ico" aria-hidden="true"></span><span class="rg-txt"><b>' + esc(shortTitle(e)) + '</b><small>' + esc(shortNomor(e.nomor)) + '</small></span>';
+    var row = main
+      ? '<a class="rg-main" href="' + esc(fileUrl(main)) + '" target="_blank" rel="noopener" title="' + esc(tip) + '"' + (main.url ? '' : ' data-pdf-title="' + esc(shortTitle(e) + ' — ' + shortNomor(e.nomor)) + '" data-pdf-mb="' + main.mb + '"') + '>' + head
+        + '<span class="rg-size">' + (main.url ? '' : esc(mb(main.mb))) + '</span><i class="fas ' + (main.url ? 'fa-external-link-alt' : 'fa-chevron-right') + ' rg-chev"></i></a>'
+      : '<div class="rg-main off">' + head + '<span class="rg-soon">' + esc(e.status || 'Belum tersedia') + '</span></div>';
+    var extras = ready.filter(function (f) { return f !== main; }).map(function (f) {
+      return '<a class="rg-x" href="' + esc(fileUrl(f)) + '" target="_blank" rel="noopener"' + (f.url ? '' : ' data-pdf-title="' + esc(shortTitle(e) + ' — ' + f.label) + '" data-pdf-mb="' + f.mb + '"') + '>' + esc(f.label) + (f.url ? ' <i class="fas fa-external-link-alt"></i>' : ' <span>' + esc(mb(f.mb)) + '</span>') + '</a>';
+    }).join('');
+    var note = e.catatan ? '<span class="rg-note">' + esc(e.catatan) + '</span>' : '';
+    return '<div class="rg-row' + (state.focus === e.id ? ' focus' : '') + '" id="reg-' + esc(e.id) + '">' + row
+      + (extras || note ? '<div class="rg-sub">' + extras + note + '</div>' : '') + '</div>';
+  }
+  function render() {
+    var body = document.getElementById('regList'); if (!body) return;
+    var q = norm(state.q), groups = [], seen = Object.create(null), count = 0;
+    KATALOG.forEach(function (e) {
+      if (state.jenis !== 'Semua' && e.jenis !== state.jenis) return;
+      if (q && norm([e.wilayah, e.pulau, e.jenis, e.nomor, shortNomor(e.nomor), e.tentang, shortTitle(e)].join(' ')).indexOf(q) < 0) return;
+      if (!seen[e.wilayah]) { seen[e.wilayah] = { name: e.wilayah, items: [] }; groups.push(seen[e.wilayah]); }
+      seen[e.wilayah].items.push(e); count++;
+    });
+    body.innerHTML = groups.map(function (g) {
+      return '<section class="rg-group"><h4>' + esc(g.name) + '</h4><div class="rg-card">' + g.items.map(itemHtml).join('') + '</div></section>';
+    }).join('') || '<div class="rg-empty"><i class="fas fa-search"></i><b>Tidak ditemukan</b><span>Coba kata lain, misalnya nama kabupaten atau nomor peraturan.</span></div>';
+    var c = document.getElementById('regCount'); if (c) c.textContent = count + ' dokumen';
+  }
+
+  function build() {
+    if (document.getElementById('regulasiModal')) return;
+    var shell = document.createElement('div');
+    shell.className = 'modal-shell'; shell.id = 'regulasiModal';
+    var segs = ['Semua', 'RTRW', 'RDTR', 'Tematik', 'Nasional'].map(function (j, i) { return '<button type="button" role="tab" data-jenis="' + j + '"' + (i ? '' : ' class="on" aria-selected="true"') + '>' + j + '</button>'; }).join('');
+    shell.innerHTML = '<section class="modal reg-modal"><div class="modal-top"><h2>Regulasi</h2><button type="button" class="close" data-close>&times;</button></div>'
+      + '<div class="rg-bar"><label class="rg-search"><i class="fas fa-search"></i><input id="regSearch" type="search" placeholder="Cari wilayah, nomor, atau topik" autocomplete="off" aria-label="Cari regulasi"></label>'
+      + '<div class="rg-seg" role="tablist">' + segs + '</div></div>'
+      + '<div class="modal-body rg-body"><div id="regList"></div>'
+      + '<p class="rg-foot"><span id="regCount"></span><br>Dihimpun sebagai rujukan. Untuk keperluan resmi gunakan salinan dari JDIH atau instansi penerbit.</p>'
+      + '</div></section>';
+    document.body.appendChild(shell);
+    shell.addEventListener('click', function (ev) { if (ev.target === shell) shell.classList.remove('open'); });
+    shell.querySelector('[data-close]').addEventListener('click', function () { shell.classList.remove('open'); });
+    var input = shell.querySelector('#regSearch');
+    input.addEventListener('input', function () { state.q = input.value; state.focus = ''; render(); });
+    shell.querySelectorAll('[data-jenis]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.jenis = b.dataset.jenis; state.focus = '';
+        shell.querySelectorAll('[data-jenis]').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        render(); shell.querySelector('.rg-body').scrollTop = 0;
+      });
+    });
+    render();
+  }
+  function open(id) {
+    build();
+    var shell = document.getElementById('regulasiModal');
+    if (id) {
+      state.q = ''; state.jenis = 'Semua'; state.focus = id;
+      shell.querySelector('#regSearch').value = '';
+      shell.querySelectorAll('[data-jenis]').forEach(function (x) { x.classList.toggle('on', x.dataset.jenis === 'Semua'); x.setAttribute('aria-selected', x.dataset.jenis === 'Semua' ? 'true' : 'false'); });
+    }
+    render();
+    shell.classList.add('open');
+    if (id) setTimeout(function () { var el = document.getElementById('reg-' + id); if (el) el.scrollIntoView({ block: 'center' }); }, 60);
+  }
+  window.brOpenRegulasi = open;
+
+  // ===== Membuka PDF: bilah progres selama dimuat, lalu tampil di penampil PDF =====
+  // Bilah progres tampil di dalam aplikasi selama dokumen dimuat. Komputer: penampil PDF bawaan browser;
+  // HP (tanpa penampil PDF bawaan): halaman ditampilkan dengan PDF.js.
+  function fmtMB(bytes) { var v = bytes / 1048576; return (v < 10 ? v.toFixed(1) : Math.round(v)).toString().replace('.', ',') + ' MB'; }
+  function canInline() { return navigator.pdfViewerEnabled === true || (navigator.pdfViewerEnabled === undefined && !/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)); }
+  function fetchPdf(url, hintMB, onProgress, signal) {
+    return fetch(url, { signal: signal }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var total = +res.headers.get('content-length') || (+hintMB || 0) * 1e6, got = 0, parts = [];
+      if (!res.body || !res.body.getReader) return res.blob();
+      var reader = res.body.getReader();
+      function pump() {
+        return reader.read().then(function (r) {
+          if (r.done) return new Blob(parts, { type: 'application/pdf' });
+          parts.push(r.value); got += r.value.length; onProgress(got, total);
+          return pump();
+        });
+      }
+      return pump();
+    }).then(function (blob) { return blob.type === 'application/pdf' ? blob : new Blob([blob], { type: 'application/pdf' }); });
+  }
+  function progressText(got, total) {
+    return total ? Math.min(99, Math.round(got / total * 100)) + '% · ' + fmtMB(got) + ' dari ' + fmtMB(total) : fmtMB(got);
+  }
+
+  // ---- Jendela progres + penampil ----
+  var ql = null, qlCtrl = null;
+  function qlBuild() {
+    if (ql) return ql;
+    ql = document.createElement('div');
+    ql.className = 'ql-shell'; ql.setAttribute('role', 'dialog'); ql.setAttribute('aria-modal', 'true');
+    ql.innerHTML = '<div class="ql-load"><span class="rg-ico ql-ico"></span><b class="ql-name"></b><div class="ql-track"><i></i></div><small class="ql-stat"></small><button type="button" class="ql-cancel">Batal</button></div>'
+      + '<div class="ql-view"><div class="ql-bar"><button type="button" class="ql-close" aria-label="Tutup">Selesai</button><b class="ql-title"></b><span class="ql-pg"></span></div>'
+      + '<iframe class="ql-frame" title="Dokumen"></iframe><div class="ql-pages"></div><div class="ql-zoombar"><button type="button" data-z="-1" aria-label="Perkecil">−</button><button type="button" data-z="1" aria-label="Perbesar">+</button></div></div>';
+    document.body.appendChild(ql);
+    ql.querySelector('.ql-close').addEventListener('click', qlClose);
+    ql.querySelector('.ql-cancel').addEventListener('click', qlClose);
+    ql.querySelectorAll('[data-z]').forEach(function (b) { b.addEventListener('click', function () { pjZoom(+b.dataset.z); }); });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && ql.classList.contains('open')) qlClose(); });
+    return ql;
+  }
+  function qlClose() {
+    if (qlCtrl) { qlCtrl.abort(); qlCtrl = null; }
+    pjReset();
+    if (ql) { ql.classList.remove('open', 'ready', 'native'); var fr = ql.querySelector('.ql-frame'); fr.onload = null; fr.removeAttribute('src'); }
+  }
+  function qlOpen(url, title, mb) {
+    var w = qlBuild();
+    pjReset();
+    w.querySelector('.ql-name').textContent = title; w.querySelector('.ql-title').textContent = title;
+    var bar = w.querySelector('.ql-track i'), st = w.querySelector('.ql-stat'), track = w.querySelector('.ql-track');
+    bar.style.width = '0%'; track.classList.remove('busy'); st.textContent = 'Membuka dokumen…';
+    w.classList.remove('ready'); w.classList.add('open');
+    qlCtrl = window.AbortController ? new AbortController() : null;
+    var ctrl = qlCtrl;
+    fetchPdf(url, mb, function (got, total) {
+      if (total) bar.style.width = Math.min(99, got / total * 100) + '%';
+      st.textContent = 'Membuka dokumen · ' + progressText(got, total);
+    }, ctrl ? ctrl.signal : undefined).then(function (blob) {
+      if (ctrl && ctrl.signal.aborted) return;
+      bar.style.width = '100%'; track.classList.add('busy'); st.textContent = 'Menyiapkan halaman…';
+      if (canInline()) {
+        // Komputer: penampil PDF bawaan browser di dalam aplikasi; progres tetap tampil sampai dokumen siap.
+        var fr = w.querySelector('.ql-frame'), shown = false;
+        var reveal = function () { if (shown || !w.classList.contains('open')) return; shown = true; w.classList.add('ready'); };
+        w.classList.add('native');
+        fr.onload = function () { setTimeout(reveal, blob.size > 15e6 ? 900 : 300); };
+        setTimeout(reveal, 12000);
+        fr.src = url;
+        return;
+      }
+      return pjShow(blob, w);
+    }).catch(function () {
+      if (ctrl && ctrl.signal.aborted) return;
+      qlClose(); window.open(url, '_blank', 'noopener');
+    });
+  }
+
+  var pj = { doc: null, zoom: 1, token: 0, queue: [], busy: false, live: [], obs: null, ratio: 1.414 };
+  var pjLib = null;
+  function loadPdfJs() {
+    if (pjLib) return pjLib;
+    pjLib = new Promise(function (resolve, reject) {
+      if (window.pdfjsLib) return resolve(window.pdfjsLib);
+      var sc = document.createElement('script'); sc.src = 'js/pdfjs/pdf.min.js?v=2.16.105';
+      sc.onload = function () { if (!window.pdfjsLib) return reject(new Error('pdf.js')); window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdfjs/pdf.worker.min.js?v=2.16.105'; resolve(window.pdfjsLib); };
+      sc.onerror = function () { pjLib = null; reject(new Error('pdf.js gagal dimuat')); };
+      document.head.appendChild(sc);
+    });
+    return pjLib;
+  }
+  function pjReset() {
+    pj.token++; pj.queue = []; pj.live = []; pj.busy = false; pj.zoom = 1;
+    if (pj.obs) { pj.obs.disconnect(); pj.obs = null; }
+    if (pj.doc) { try { pj.doc.destroy(); } catch (e) {} pj.doc = null; }
+    if (ql) { ql.querySelector('.ql-pages').innerHTML = ''; ql.querySelector('.ql-pg').textContent = ''; }
+  }
+  function pjShow(blob, w) {
+    var token = pj.token;
+    return Promise.all([loadPdfJs(), blob.arrayBuffer()]).then(function (r) {
+      if (token !== pj.token) return;
+      return r[0].getDocument({ data: new Uint8Array(r[1]), standardFontDataUrl: 'js/pdfjs/standard_fonts/', isEvalSupported: false }).promise;
+    }).then(function (doc) {
+      if (!doc) return;
+      if (token !== pj.token) { doc.destroy(); return; }
+      pj.doc = doc;
+      return doc.getPage(1).then(function (page) {
+        var v = page.getViewport({ scale: 1 }); pj.ratio = v.height / v.width;
+        w.classList.add('ready');
+        pjLayout();
+      });
+    });
+  }
+  function pjLayout() {
+    var box = ql.querySelector('.ql-pages'), n = pj.doc.numPages, width = Math.round((box.clientWidth - 16) * pj.zoom), html = '';
+    if (pj.obs) pj.obs.disconnect();
+    pj.queue = []; pj.live = [];
+    for (var i = 1; i <= n; i++) html += '<div class="ql-page" data-p="' + i + '" style="width:' + width + 'px;height:' + Math.round(width * pj.ratio) + 'px"></div>';
+    box.innerHTML = html;
+    var pg = ql.querySelector('.ql-pg'), pages = box.children;
+    pj.obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) pjEnqueue(en.target); });
+    }, { root: box, rootMargin: '300px 0px' });
+    for (var k = 0; k < pages.length; k++) pj.obs.observe(pages[k]);
+    var tick = null;
+    box.onscroll = function () {
+      if (tick) return;
+      tick = requestAnimationFrame(function () {
+        tick = null;
+        var mid = box.scrollTop + box.clientHeight / 2, lo = 0, hi = pages.length - 1;
+        while (lo < hi) { var m = (lo + hi + 1) >> 1; if (pages[m].offsetTop <= mid) lo = m; else hi = m - 1; }
+        pg.textContent = (lo + 1) + ' / ' + n;
+      });
+    };
+    box.onscroll();
+  }
+  function pjEnqueue(el) {
+    if (el.dataset.st) return;
+    el.dataset.st = 'q'; pj.queue.push(el); pjNext();
+  }
+  function pjNext() {
+    if (pj.busy || !pj.doc) return;
+    var box = ql.querySelector('.ql-pages'), top = box.scrollTop - 400, bottom = box.scrollTop + box.clientHeight + 400;
+    // utamakan halaman yang sedang terlihat; buang antrean yang sudah jauh
+    pj.queue = pj.queue.filter(function (el) { var keep = el.offsetTop + el.offsetHeight > top && el.offsetTop < bottom; if (!keep) delete el.dataset.st; return keep; });
+    var el = pj.queue.shift(); if (!el) return;
+    pj.busy = true;
+    var token = pj.token;
+    pj.doc.getPage(+el.dataset.p).then(function (page) {
+      if (token !== pj.token) return;
+      var v1 = page.getViewport({ scale: 1 }), cssW = el.clientWidth, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var scale = cssW / v1.width * dpr, maxPx = 4e6;
+      if (v1.width * v1.height * scale * scale > maxPx) scale = Math.sqrt(maxPx / (v1.width * v1.height));
+      var vp = page.getViewport({ scale: scale }), cv = document.createElement('canvas');
+      cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+      el.style.height = Math.round(cssW * v1.height / v1.width) + 'px';
+      return page.render({ canvasContext: cv.getContext('2d', { alpha: false }), viewport: vp }).promise.then(function () {
+        page.cleanup();
+        if (token !== pj.token) return;
+        el.innerHTML = ''; el.appendChild(cv); el.dataset.st = 'd'; pj.live.push(el);
+        if (pj.live.length > 8) {
+          var mid = box.scrollTop + box.clientHeight / 2;
+          pj.live.sort(function (a, b) { return Math.abs(b.offsetTop - mid) - Math.abs(a.offsetTop - mid); });
+          while (pj.live.length > 6) { var old = pj.live.shift(); var c = old.firstChild; if (c) { c.width = 0; c.height = 0; } old.innerHTML = ''; delete old.dataset.st; }
+        }
+      });
+    }).catch(function () { delete el.dataset.st; }).then(function () {
+      if (token !== pj.token) return;
+      pj.busy = false;
+      setTimeout(pjNext, 0);
+    });
+  }
+  function pjZoom(dir) {
+    if (!pj.doc || !ql) return;
+    var z = Math.max(1, Math.min(3, pj.zoom + dir * 0.5));
+    if (z === pj.zoom) return;
+    var box = ql.querySelector('.ql-pages'), rel = box.scrollTop / Math.max(1, box.scrollHeight);
+    pj.zoom = z; pj.token++; pj.busy = false;
+    pjLayout();
+    box.scrollTop = rel * box.scrollHeight;
+  }
+
+  window.brOpenPdf = qlOpen;
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[data-pdf-title]');
+    if (!a || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button > 0) return;
+    if (!window.fetch || !window.Blob || !window.URL || !URL.createObjectURL) return;
+    var u; try { u = new URL(a.href, location.href); } catch (e) { return; }
+    if (u.origin !== location.origin) return; // berkas di situs lain: biarkan browser
+    ev.preventDefault();
+    window.brOpenPdf(u.href, a.getAttribute('data-pdf-title'), a.getAttribute('data-pdf-mb'));
+  });
+
+  document.addEventListener('click', function (ev) {
+    var t = ev.target.closest && ev.target.closest('[data-reg-open],[data-open-regulasi]');
+    if (!t) return;
+    ev.preventDefault(); ev.stopPropagation();
+    open(t.getAttribute('data-reg-open') || '');
+  }, true);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
+})();
